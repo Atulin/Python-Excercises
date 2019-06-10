@@ -23,14 +23,14 @@ class Point:
 
 
 # Calculate distance between two points
-def distance(a: Point, b: Point):
+def distance(a: Point, b: Point) -> float:
     diff_x = abs(a.x - b.x)
     diff_y = abs(a.y - b.y)
     return math.sqrt(pow(diff_x, 2) + pow(diff_y, 2))
 
 
 # Calculate the total length
-def total_length(graph: list):
+def total_length(graph: list) -> float:
     total = 0
     for i in range(1, len(graph) - 1):
         total += distance(graph[i-1], graph[i])
