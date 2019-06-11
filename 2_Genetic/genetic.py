@@ -116,11 +116,11 @@ def roulette_population(specimen: list, roul: list) -> list:
 
 
 # Try crossing specimen in the whole population to create offspring
-def cross_population(specimen: list, crossing_chance: int, a: int, b: int, c: int, d: int) -> list:
+def cross_population(specimen: list, crossing_chance: float, a: int, b: int, c: int, d: int) -> list:
     result = [Specimen(0)] * len(specimen)
 
     for i in range(0, len(specimen), 2):
-        chance = random.randint(0, 100)
+        chance = random.random()
         position = random.randint(0, MAX_BITS)
 
         # Check for lonely specimen
@@ -144,11 +144,11 @@ def cross_population(specimen: list, crossing_chance: int, a: int, b: int, c: in
 
 
 # Try mutating specimen in the population
-def mutate_population(specimen: list, mutation_chance: int, a: int, b: int, c: int, d: int) -> list:
+def mutate_population(specimen: list, mutation_chance: float, a: int, b: int, c: int, d: int) -> list:
     result = [Specimen(0)] * len(specimen)
 
     for i in range(0, len(specimen)):
-        chance = random.randint(0, 100)
+        chance = random.random()
 
         if chance <= mutation_chance:
             specimen[i].mutate()
@@ -163,7 +163,7 @@ def mutate_population(specimen: list, mutation_chance: int, a: int, b: int, c: i
 
 
 # Run the genetic algorithm
-def genetic(amount: int, max_iterations: int, stop_condition: int, cross_chance: int, mutation_chance: int,
+def genetic(amount: int, max_iterations: int, stop_condition: int, cross_chance: float, mutation_chance: float,
             a: int, b: int, c: int, d: int):
     specimen = generate_random_pop(amount, a, b, c, d)
     best_fitnesses = []
@@ -173,9 +173,9 @@ def genetic(amount: int, max_iterations: int, stop_condition: int, cross_chance:
 
         same_fitness = 0
 
+        print("Best specimen: %s" % best_specimen)
         print()
         print("Generation %s:" % cnt)
-        print("Best specimen: %s" % best_specimen)
 
         # Check for how many iterations the result was the same
         for sc in reversed(range(0, stop_condition + 1)):
@@ -208,8 +208,8 @@ def run():
     amount = int(input("Desired amount of specimen: "))
     loops = int(input("Maximum number of iterations: "))
     cond = int(input("After how many iterations of no fitness change should the algorithm stop: "))
-    cross = int(input("Chance for two specimen to have offspring: "))
-    mut = int(input("Chance for a specimen to mutate: "))
+    cross = float(input("Chance for two specimen to have offspring: "))
+    mut = float(input("Chance for a specimen to mutate: "))
     a = int(input("Parameter a: "))
     b = int(input("Parameter b: "))
     c = int(input("Parameter c: "))
