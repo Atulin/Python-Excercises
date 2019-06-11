@@ -32,7 +32,7 @@ def distance(a: Point, b: Point) -> float:
 # Calculate the total length
 def total_length(graph: list) -> float:
     total = 0
-    for i in range(1, len(graph) - 1):
+    for i in range(1, len(graph)):
         total += distance(graph[i-1], graph[i])
 
     return total
@@ -47,7 +47,6 @@ def hamilton(graph: list, starting_point_name: str) -> list:
     # Go over all of the points in the graph
     i = 0
     while len(graph) > 1:
-        print(i)
         point = visited[i]
         graph.remove(point)
         shortest_distace = math.inf
@@ -96,6 +95,9 @@ graph = [
 # Select the starting point
 start = "E"
 
+# Run calculations
 h = hamilton(graph, start)
-print(h)
-print(total_length(h))
+
+# Print results
+print("Shortest path is %s" % h)
+print("Total length of the route is %s" % total_length(h))

@@ -19,7 +19,33 @@ Algorytm kończy działanie gdy na początkowej liście punktów nie pozostanie
 ## Obliczenia
 
 Obliczenie dystansu pomiędzy dwoma punktami dokonane zostało przy użyciu
-wzoru Pitagorasa: a^2 + b^2 = c ^2
+wzoru Pitagorasa: `a^2 + b^2 = c ^2` zmodyfikowanego do postaci 
+`c = sqrt(a^2 + b^2)`
+
+1. Odległość z punktu E do punktu A to sqrt((5-1)^2+(2-2)^2)=4.0
+2. Odległość z punktu E do punktu B to sqrt((5-3)^2+(2-1)^2)=2.24
+3. Odległość z punktu E do punktu C to sqrt((5-3)^2+(2-6)^2)=4.47
+4. Odległość z punktu E do punktu D to sqrt((5-6)^2+(2-7)^2)=5.1
+
+Najkrótsza droga prowadzi do punktu B, ten punkt obieramy więc za następny:
+
+1. Odległość z punktu B do punktu A to sqrt((3-1)^2+(1-2)^2)=2.24
+2. Odległość z punktu B do punktu C to sqrt((3-3)^2+(1-6)^2)=5.0
+3. Odległość z punktu B do punktu D to sqrt((3-6)^2+(1-7)^2)=6.71
+
+Z punktu B najbliżej jest do punktu A, tak więc dalej sprawdzamy odległości z niego
+
+1. Odległość z punktu A do punktu C to sqrt((1-3)^2+(2-6)^2)=4.47
+2. Odległość z punktu A do punktu D to sqrt((1-6)^2+(2-7)^2)=7.07
+
+Najbliżej jest do punktu D, a odległośc ta wynosi sqrt((3-6)^2+(6-7)^2)=3.16
+
+Odległośc z punktu D do punktu startowego E to sqrt((6-5)^2+(7-2)^2)=5.1
+
+Ostatecznie, najkrótsza ścieżka to E -> B -> A -> C -> D -> E, ma ona długość 17.21
+
+
+
 
 ## Dokumentacja kodu
 
