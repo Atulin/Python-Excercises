@@ -116,9 +116,61 @@ Obliczamy stopnie twardości i grubości:
 * Twardość
   * Miękka: `1-(x-20)/10 = 1-(21-20)/10 = 1-1/10 = 1-0.1 = 0.9`
   * Średnio twarda: `(x-20)/10 = (21-20)/10 = 1/10 = 0.1`
+  * Twarda: 0
   
 * Grubość
+  * Cienka: 0
   * Średnio gruba: `1-(x-10)/10 = 1-(16-10)/10 = 1-6/10 = 1-0.6 = 0.4`
   * Gruba: `(x-10)/10 = (16-10)/10 = 6/10 = 0.6`
 
+Tworzymy macierz wartości siły:
 
+| Twardość \ Grubość | 0 | 0.4 | 0.6 |
+|---|---|---|---|
+| 0.9 | 0 | 0.4 | 0.6 |
+| 0.1 | 0 | 0.1 | 0.1 |
+| 0 | 0 | 0 | 0 |
+
+I nakładamy ją na macierz określeń siły:
+
+| Twardość \ Grubość | C | S | G |
+|---|---|---|---|
+| M | S | S | U |
+| S | S | U | M |
+| T | S | U | M |
+
+Co daje nam następujące wartości:
+
+* `S = max(0, 0, 0, 0.4) = 0.4`
+* `U = max(0, 0.1, 0.6) = 0.6`
+* `M = max(0, 0.1) = 0.1`
+
+Które dają następujący graf wyostrzania:
+
+![](img/force-calculated.png)
+
+Do wyostrzenia i wyprowadzenia ostatecznej wartości siły nacisku, zastosujemy
+wzór
+
+```
+F = (C1 * P1 + C2 * P2 + C3 * P3) / (P1 + P2 + P3)
+```
+
+* C1 = ~0.26
+* C2 = ~0.77
+* C3 = ~1.23
+
+* `P1 = 0.5 * (0.46 + 0.5) * 0.4 = 0.5 * 0.96 * 0.4 = 0.192`
+* `P2 = 0.5 * (0.58 + 0.7) * 0.6 = 0.5 * 1.28 * 0.6 = 0.384`
+* `P3 = 0.5 * (0.49 + 0.5) * 0.1 = 0.5 * 0.99 * 0.1 = 0.0495`
+
+Ostatecznie,
+
+```
+F = (0.26 * 0.192 + 0.77 * 0.384 + 1.23 * 0.0495) / (0.192 + 0.384 + 0.0495)
+F = (0,04992 + 0,29568 + 0,060885) / 0,6255
+F = 0,406485 / 0.6255
+F = 0,6498561151079137
+```
+
+Tak więc niezbędna siła musiałaby wynosić ~0.65e6 N (~650 kN)
