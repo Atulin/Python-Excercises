@@ -3,11 +3,22 @@
 10. Zaprojektować system sterowania rozmytego sterującego siłą nacisku
 ostrza w zależności od twardości i grubości płyty metalowej.
 
+System sterowania musi wziąć pod uwagę grubość ciętej płyty oraz twardość
+materiału z którego została wykonana. Więcej materiału do przecięcia oznacza
+koniecznośc wytworzenia większej siły. Tak jak i większa twardośc materiału.
+
 ## 1. Założenia
 
-1. Twardość płyty podzielimy na [M]iękką, [S]rednio twardą oraz [T]wardą
+0. Im twardsza i grubsza płyta, tym więcej siły będzie niezbędne do przecięcia jej.
+
+1. Twardość płyty podzielimy na [M]iękką, [S]rednio twardą oraz [T]wardą.
+
+    Zastosowany przedział [10, 70] bazowany jest na skali HRC, w której
+    najtwardsza stal ma 70 HRC, a najbardziej miękkie stopy około 20.
 
     ![](img/hardness.png)
+    
+    Funkcje przynależności:
     
     ```
     M = {
@@ -36,7 +47,13 @@ ostrza w zależności od twardości i grubości płyty metalowej.
 
 2. Grubość płyty podzielimy na [C]ienką, [S]rednio grubą oraz [G]rubą
 
+    Zastosowany przedział uwzględnia blachy o grubości poniżej 5 milimetrów,
+    płytki grubości poniżej dwóch centymetrów, oraz grube płyty powyżej 2
+    centymetrów
+
     ![](img/thickness.png)
+    
+    Funkcje przynależności:
     
     ```
     C = {
@@ -65,7 +82,13 @@ ostrza w zależności od twardości i grubości płyty metalowej.
 
 3. Siłę nacisku podzielimy na [S]łabą, [U]miarkowaną oraz [M]ocną
 
+    Przedział mierzony jest w Niutonach, bazowany jest pomiędzy siłą
+    ludzkich rąk, a siłą jaką wytwarzają prasy hydrauliczne stosowane
+    do obróbki metali.
+
     ![](img/force.png)
+    
+    Funkcje przynależności:
     
     ```
     S = {
